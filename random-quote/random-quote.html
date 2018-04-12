@@ -3,10 +3,13 @@
 
 <head>
   <meta charset="UTF-8" />
-  <title>Pro MERN Stack</title>
+  <title>Random Quote Machine</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="https://gitcdn.link/repo/freeCodeCamp/testable-projects-fcc/master/build/bundle.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
@@ -15,18 +18,50 @@
 <script type="text/babel">
   const contentNode = document.getElementById('contents');
 
-  class OuterWrap extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>Random Quote Machine</h1>
-        <a href="../index.html">Back to index</a>
-      </div>
-    );
-  }
+  class QuoteBox extends React.Component {
+    constructor() {
+      super();
+      this.state = {quote: '', author: ''};
+      this.loadData = this.loadData.bind(this);
+    }
+
+    componentDidMount() {
+      this.loadData();
+    }
+
+    loadData() {
+      let quoteNumber = Math.floor(Math.random() * 20);
+      fetch(`https://random-quote-generator.herokuapp.com/api/quotes/`).then(response => {
+        if (response.ok) {
+          response.json().then(data => {
+            this.setState({quote: data[quoteNumber].quote, author: data[quoteNumber].author});
+          });
+        } else {
+          response.json().then(error => {
+            alert(`Failed to fetch issues: ${error}`);
+          });
+        }
+      }).catch(err => {
+        alert(`Error in fetching data from server: ${err}`);
+      });
+    }
+
+    render() {
+      return (
+        <div id="outer-box">
+          <a href="../index.html">Back to index</a>
+          <div id="quote-box">
+            <div id="text">{this.state.quote}</div>
+            <div id="author">{this.state.author}</div>
+            <button id="new-quote" onClick={this.loadData}>New Quote</button>
+            <p><a href="https://twitter.com/intent/tweet" id="tweet-quote"><i className="devicon-twitter-plain"></i></a></p>
+          </div>
+        </div>
+      );
+    }
   }
 
-  ReactDOM.render(<OuterWrap />, contentNode);
+  ReactDOM.render(<QuoteBox />, contentNode);
 </script>
 
 </body>
