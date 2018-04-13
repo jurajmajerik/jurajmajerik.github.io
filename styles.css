@@ -187,3 +187,82 @@ p {
 a {
   color: inherit;
 }
+
+#outer-box {
+  height: 100vh;
+  margin-top: -40px;
+  text-align: center;
+}
+
+#quote-box {
+  text-align: center;
+  border: 1px solid var(--blue-border);
+  border-radius: 4px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 20% 0 20%;
+  height: 200px;
+}
+
+#text-author-wrap-outer {
+  height: 110px;
+}
+
+#text-author-wrap-inner {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#author {
+  font-size: 12px;
+}
+
+#text {
+  padding: 0 10% 0 10%;
+}
+
+#new-quote {
+  background-color: var(--bg-primary);
+  border: 1px solid var(--blue-border);
+  border-radius: 4px;
+  color: var(--font-primary);
+  padding: 8px 16px;
+  text-align: center;
+  display: inline-block;
+  text-transform: uppercase;
+  font-size: 16px;
+}
+
+#button-twitter-wrap-outer {
+  height: 90px;
+}
+
+#button-twitter-wrap-inner {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#new-quote:hover {
+  background-color: var(--bg-secondary);
+}
+
+#new-quote:focus {
+  outline:0;
+}
+
+#new-quote:active {
+  background-color: var(--bg-primary);
+}
+
+#tweet-quote-wrap {
+  padding-top: 15px;
+}
+
+#tweet-quote {
+  text-decoration: none;
+  color: white;
+  padding-top: 10px;
+}
