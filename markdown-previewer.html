@@ -1,0 +1,122 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Markdown Previewer</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/0.3.19/marked.min.js"></script>
+  <script src="https://gitcdn.link/repo/freeCodeCamp/testable-projects-fcc/master/build/bundle.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="mdstyles.css">
+</head>
+
+<body>
+  <div id="contents"></div>
+
+<script type="text/babel">
+
+  const contentNode = document.getElementById('contents');
+
+  const renderer = new marked.Renderer();
+  renderer.link = function (href, title, text) {
+  return `<a target="_blank" href="${href}">${text}` + '</a>';
+  }
+
+  marked.setOptions({
+  breaks: true,
+  });
+
+  const placeholder =
+`## H2
+
+### And a smaller header
+
+\`\`\`
+// this is multi-line code:
+
+function anotherExample(firstLine, lastLine) {
+  if (firstLine == '\`\`\`' && lastLine == '\`\`\`') {
+    return multiLineCode;
+  }
+}
+\`\`\`
+
+# BIG HEADING
+
+**bold text!**
+~~crossing stuff out~~
+[links](https://www.freecodecamp.com)
+> Block Quotes!
+
+1. Numbererd list
+- Unordered list
+
+## This is a sub-header
+
+![React Logo w/ Text](https://i.imgur.com/V0xMNxL.png)
+`
+
+  class App extends React.Component {
+    constructor() {
+      super();
+      this.state = {input: placeholder};
+      this.handleChange = this.handleChange.bind(this);
+      this.convert = this.convert.bind(this);
+    }
+
+    handleChange(event) {
+      this.setState({input: event.target.value});
+      this.convert();
+    }
+
+    convert() {
+      let output = marked(this.state.input);
+      this.setState({output: output});
+    }
+
+    render() {
+      return (
+        <div>
+        <h1 id="md-heading">Markdown Previewer</h1>
+        <div className="markdown-outer-box">
+          <Editor input={this.state.input} handleChange={this.handleChange}/>
+          <Preview input={this.state.input} />
+        </div>
+        </div>
+      );
+    }
+  }
+
+  class Editor extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+    render() {
+      return (
+        <textarea value={this.props.input} onChange={this.props.handleChange} type="text" id="editor" className="column-full-height border">
+        </textarea>
+      );
+    }
+  }
+
+  class Preview extends React.Component {
+    constructor(props) {
+      super(props);
+    }
+    render() {
+      return (
+        <div id="preview" dangerouslySetInnerHTML={{__html: marked(this.props.input, { renderer: renderer })}} className="border column-full-height">
+        </div>
+      );
+    }
+  }
+
+  ReactDOM.render(<App />, contentNode);
+</script>
+
+</body>
+
+</html>
