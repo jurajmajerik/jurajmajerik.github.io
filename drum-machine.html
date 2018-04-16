@@ -1,0 +1,121 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Drum Machine</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="https://gitcdn.link/repo/freeCodeCamp/testable-projects-fcc/master/build/bundle.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="drum-machine-styles.css">
+</head>
+
+<body>
+<div id="contents"></div>
+
+<script type="text/babel">
+  const contentNode = document.getElementById('contents');
+  const soundNames = {
+    q: 'Heater 1',
+    w: 'Heater 2',
+    e: 'Heater 3',
+    a: 'Heater 4',
+    s: 'Clap',
+    d: 'Open HH',
+    z: 'Kick n\' hat',
+    x: 'Kick',
+    c: 'Closed HH'
+  };
+
+  class App extends React.Component {
+    constructor() {
+      super();
+      this.state = {};
+      // this.playSound = this.playSound.bind(this);
+    }
+
+    componentDidMount() {
+      document.addEventListener('keydown', function(e) {
+        if (e === undefined) return;
+        console.log(e);
+        const sound = document.getElementById(e.key.toUpperCase());
+        sound.currentTime = 0;
+        sound.play();
+        const pad = document.getElementById(`audio-${e.key}`);
+        pad.classList.add("key-active");
+        setTimeout(() => {pad.classList.remove("key-active");}, 100);
+        document.getElementById('display').innerHTML = soundNames[e.key];
+      });
+    }
+
+    playSound(pad) {
+      const sound = document.getElementById(pad);
+      sound.currentTime = 0;
+      sound.play();
+      document.getElementById('display').innerHTML = pad;
+    }
+
+    render() {
+      return (
+        <div id="drum-machine">
+          <div id="drum-machine-inner">
+          <h3>Drum Machine</h3>
+            <div className="grid">
+              <div className="row">
+                <div id="audio-q" className="drum-pad" onClick={() => this.playSound('Q')}>
+                  <audio src="drum-sounds/1.mp3" className="clip" id="Q"></audio>
+                  <div className="cell-label">Q</div>
+                </div>
+                <div id="audio-w" className="drum-pad" onClick={() => this.playSound('W')}>
+                  <audio src="drum-sounds/2.mp3" className="clip" id="W"></audio>
+                  <div className="cell-label">W</div>
+                </div>
+                <div id="audio-e" className="drum-pad" onClick={() => this.playSound('E')}>
+                  <audio src="drum-sounds/3.mp3" className="clip" id="E"></audio>
+                  <div className="cell-label">E</div>
+                </div>
+              </div>
+              <div className="row">
+              <div id="audio-a" className="drum-pad" onClick={() => this.playSound('A')}>
+                <audio src="drum-sounds/4.mp3" className="clip" id="A"></audio>
+                <div className="cell-label">A</div>
+              </div>
+              <div id="audio-s" className="drum-pad" onClick={() => this.playSound('S')}>
+                <audio src="drum-sounds/5.mp3" className="clip" id="S"></audio>
+                <div className="cell-label">S</div>
+              </div>
+              <div id="audio-d" className="drum-pad" onClick={() => this.playSound('D')}>
+                <audio src="drum-sounds/6.mp3" className="clip" id="D"></audio>
+                <div className="cell-label">D</div>
+              </div>
+              </div>
+              <div className="row">
+              <div id="audio-z" className="drum-pad" onClick={() => this.playSound('Z')}>
+                <audio src="drum-sounds/7.mp3" className="clip" id="Z"></audio>
+                <div className="cell-label">Z</div>
+              </div>
+              <div id="audio-x" className="drum-pad" onClick={() => this.playSound('X')}>
+                <audio src="drum-sounds/8.mp3" className="clip" id="X"></audio>
+                <div className="cell-label">X</div>
+              </div>
+              <div id="audio-c" className="drum-pad" onClick={() => this.playSound('C')}>
+                <audio src="drum-sounds/9.mp3" className="clip" id="C"></audio>
+                <div className="cell-label">C</div>
+              </div>
+              </div>
+            </div>
+            <div id="display">Press a key</div>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  ReactDOM.render(<App />, contentNode);
+</script>
+
+</body>
+
+</html>
