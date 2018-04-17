@@ -23,6 +23,7 @@
   height: 80px;
   border: 1px solid var(--blue-border);
   display: table-cell;
+  border-radius: 50%;
 }
 
 .cell-label {

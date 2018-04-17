@@ -15,6 +15,7 @@ body {
   --blue-opaque: rgba(53, 153, 222, 0.2);
   --font-size-label: 11px;
 
+  --javascript: #a08a11;
   --react: #1b90c6;
   --node: #567714;
   --express: grey;
@@ -22,6 +23,7 @@ body {
   --mongo: #4CA655;
   --redux: #7A4AB6;
   --angular: #bf183c;
+  --regex: #bf183c;
   --d3: #E47652;
   /*--bg-primary: white;
   --bg-secondary: white;
@@ -33,6 +35,9 @@ body {
   font-family: "Custom";
 }
 
+.javascript-tag {
+  background-color: var(--javascript);
+}
 .node-tag {
   background-color: var(--node);
 }
@@ -56,6 +61,9 @@ body {
 }
 .d3-tag {
   background-color: var(--d3);
+}
+.regex-tag {
+  background-color: var(--regex);
 }
 
 #navbar {
@@ -103,9 +111,8 @@ body {
   position: relative;
   border: 1px solid var(--blue-border);
   box-sizing: border-box;
-  background-image: url(box.png);
   background-size: cover;
-  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
   box-shadow: inset 0 0 0 2000px rgba(23, 31, 39, 0.95);
 }
 
@@ -116,7 +123,7 @@ body {
 }
 
 .square:hover {
-  box-shadow:inset 0 0 0 2000px rgba(23, 31, 39, 0.97);
+  box-shadow: inset 0 0 0 2000px rgba(23, 31, 39, 0.93);
 }
 
 .square .content {

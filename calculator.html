@@ -1,0 +1,127 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Drum Machine</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script src="https://gitcdn.link/repo/freeCodeCamp/testable-projects-fcc/master/build/bundle.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="calculator-styles.css">
+</head>
+
+<body>
+<div id="contents"></div>
+
+<script type="text/babel">
+  const contentNode = document.getElementById('contents');
+
+  let calculation = '';
+  let decimalInputAllowed = true;
+  let resultReady = false;
+
+  class App extends React.Component {
+    constructor() {
+      super();
+      this.state = {display: 0};
+      this.handleNumbers = this.handleNumbers.bind(this);
+      this.handleSigns = this.handleSigns.bind(this);
+      this.calculate = this.calculate.bind(this);
+      this.clear = this.clear.bind(this);
+      this.animateButton = this.animateButton.bind(this);
+    }
+
+    handleNumbers(input, buttonId) {
+      this.animateButton(buttonId);
+
+      if (calculation.slice(-1) === '0' && input !== '.') {
+        calculation = calculation.slice(0, -1);
+      }
+        calculation += input;
+        this.setState({display: calculation});
+    }
+
+    handleSigns(input, buttonId) {
+      this.animateButton(buttonId);
+
+      if (calculation.slice(-1) === '+' || calculation.slice(-1) === '-' || calculation.slice(-1) === '*' || calculation.slice(-1) === '/') {
+        calculation = calculation.slice(0, -1);
+      }
+
+      if (calculation.length > 0) {
+        calculation += input;
+        this.setState({display: calculation});
+        decimalInputAllowed = true;
+      }
+    }
+
+    handleDecimal(input, buttonId) {
+      this.animateButton(buttonId);
+
+      if (calculation.length > 0 && decimalInputAllowed && !(calculation.slice(-1) === '.') && !(calculation.slice(-1) === '+') && !(calculation.slice(-1) === '-') && !(calculation.slice(-1) === '*' && !(calculation.slice(-1) === '/'))) {
+        calculation += input;
+        this.setState({display: calculation});
+        decimalInputAllowed = false;
+      }
+    }
+
+    calculate(buttonId) {
+      this.animateButton(buttonId);
+
+      let result = eval(calculation);
+      this.setState({display: result});
+      calculation = result.toString();
+      resultReady = true;
+    }
+
+    clear(buttonId) {
+      this.animateButton(buttonId);
+
+      calculation = '';
+      this.setState({display: 0});
+      decimalInputAllowed = true;
+    }
+
+    animateButton(buttonId) {
+      const button = document.getElementById(buttonId);
+      button.classList.add("button-active");
+      setTimeout(() => {button.classList.remove("button-active");}, 100);
+    }
+
+    render() {
+      return (
+        <div id="calculator-outer">
+          <div id="calculator-inner">
+            <div id="display">{this.state.display}</div>
+            <button id="clear" onClick={() => this.clear('clear')}>AC</button>
+            <button id="divide" value="/" onClick={() => this.handleSigns('/', 'divide')}>/</button>
+            <button id="multiply" value="x" onClick={() => this.handleSigns('*', 'multiply')}>x</button>
+            <button id="add" value="+" onClick={() => this.handleSigns('+', 'add')}>+</button>
+            <button id="subtract" value="-" onClick={() => this.handleSigns('-', 'subtract')}>-</button>
+            <button id="equals" onClick={() => this.calculate('equals')}>=</button>
+            <button id="decimal" onClick={() => this.handleDecimal('.', 'decimal')}>.</button>
+            <button id="zero" value="0" onClick={() => this.handleNumbers('0', 'zero')}>0</button>
+            <button id="one" value="1" onClick={() => this.handleNumbers('1', 'one')}>1</button>
+            <button id="two" value="2" onClick={() => this.handleNumbers('2', 'two')}>2</button>
+            <button id="three" value="3" onClick={() => this.handleNumbers('3', 'three')}>3</button>
+            <button id="four" value="4" onClick={() => this.handleNumbers('4', 'four')}>4</button>
+            <button id="five" value="5" onClick={() => this.handleNumbers('5', 'five')}>5</button>
+            <button id="six" value="6" onClick={() => this.handleNumbers('6', 'six')}>6</button>
+            <button id="seven" value="7" onClick={() => this.handleNumbers('7', 'seven')}>7</button>
+            <button id="eight" value="8" onClick={() => this.handleNumbers('8', 'eight')}>8</button>
+            <button id="nine" value="9" onClick={() => this.handleNumbers('9', 'nine')}>9</button>
+          </div>
+        </div>
+      );
+    }
+  }
+
+  ReactDOM.render(<App />, contentNode);
+
+</script>
+
+</body>
+
+</html>

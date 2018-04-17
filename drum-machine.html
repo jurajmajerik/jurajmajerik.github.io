@@ -33,7 +33,6 @@
     constructor() {
       super();
       this.state = {};
-      // this.playSound = this.playSound.bind(this);
     }
 
     componentDidMount() {
@@ -54,6 +53,9 @@
       const sound = document.getElementById(pad);
       sound.currentTime = 0;
       sound.play();
+      const key = document.getElementById(`audio-${pad.toLowerCase()}`);
+      key.classList.add("key-active");
+      setTimeout(() => {key.classList.remove("key-active");}, 100);
       document.getElementById('display').innerHTML = pad;
     }
 
