@@ -1,0 +1,136 @@
+body {
+  font-size: 24px;
+}
+
+button {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: inherit;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+button:focus {outline:0;}
+
+#outer-wrap {
+  height: 100vh;
+  margin-top: -40px;
+  text-align: center;
+}
+
+#inner-wrap {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 300px;
+  border: 1px solid var(--blue-border);
+  border-radius: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: 50px;
+}
+
+#break-length-wrap {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+}
+
+#session-length-wrap {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+}
+
+#break-length {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+}
+
+#session-length {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-block;
+}
+
+#break-label {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  font-size: 16px;
+}
+
+#session-label {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  font-size: 16px;
+}
+
+#timer-label {
+  grid-column: 1 / 3;
+  grid-row: 3 / 4;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+#time-left-wrap {
+  grid-column: 1 / 3;
+  grid-row: 4 / 5;
+}
+
+#timer-control {
+  grid-column: 1 / 3;
+  grid-row: 5 / 6;
+}
+
+#time-left {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 40px;
+}
+
+#start_stop {
+  font-size: 18px;
+}
+
+#reset {
+  font-size: 18px;
+}
+
+#user-alert {
+  grid-column: 1 / 3;
+  grid-row: 6 / 7;
+}
+
+.led {
+    margin: 20px auto;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.25);
+    box-shadow: #000 0 -1px 6px 1px;
+}
+
+.led-red {
+    background-color: #F00;
+    box-shadow: #000 0 -1px 6px 1px, inset #600 0 -1px 8px, #F00 0 3px 11px;
+}
+
+.red-font {
+  color: #BC000C !important;
+}
+
+#description {
+  margin-top: 270px;
+  font-size: 12px;
+  color: #adadad;
+  max-width: 300px;
+  margin-left: auto;
+  margin-right: auto;
+}

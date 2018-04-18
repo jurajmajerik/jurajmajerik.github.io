@@ -1,0 +1,194 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Pomodoro Clock</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  <script src="https://gitcdn.link/repo/freeCodeCamp/testable-projects-fcc/master/build/bundle.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="pomodoro-clock-styles.css">
+</head>
+
+<body>
+<div id="contents"></div>
+
+<script type="text/babel">
+  const contentNode = document.getElementById('contents');
+
+  class App extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        break: 5,
+        session: 25,
+        breakSeconds: 300,
+        sessionSeconds: 1500,
+        timerOn: false,
+        sessionOn: true
+      };
+      this.decrementBreak = this.decrementBreak.bind(this);
+      this.incrementBreak = this.incrementBreak.bind(this);
+      this.decrementSession = this.decrementSession.bind(this);
+      this.incrementSession = this.incrementSession.bind(this);
+      this.handleTimer = this.handleTimer.bind(this);
+      this.timer = this.timer.bind(this);
+      this.startTimer = this.startTimer.bind(this);
+      this.resetTimer = this.resetTimer.bind(this);
+      this.alertUser = this.alertUser.bind(this);
+      this.addRedStyle = this.addRedStyle.bind(this);
+      this.removeRedStyle = this.removeRedStyle.bind(this);
+    }
+
+    startTimer() {
+      if (this.state.timerOn === false) {
+        this.intervalId = setInterval(this.timer, 1000);
+        this.setState({ timerOn: true });
+      } else {
+        clearInterval(this.intervalId);
+        this.setState({ timerOn: false });
+      }
+    }
+
+    timer() {
+      if (this.state.sessionSeconds < 61 || this.state.breakSeconds < 61) {
+        this.addRedStyle();
+      }
+
+      if (this.state.sessionSeconds === 0) {
+        this.setState({ sessionOn: false, sessionSeconds: (this.state.session * 60) + 1, breakSeconds: this.state.breakSeconds + 1 });
+        this.alertUser();
+        this.removeRedStyle();
+      }
+
+      if (this.state.breakSeconds === 0) {
+        this.setState({ sessionOn: true, breakSeconds: this.state.break * 60 });
+        this.alertUser();
+        this.removeRedStyle();
+      }
+
+      if (this.state.sessionOn) {
+        this.setState({ sessionSeconds: this.state.sessionSeconds - 1 });
+      } else {
+        this.setState({ breakSeconds: this.state.breakSeconds - 1 });
+      }
+    }
+
+    resetTimer() {
+      clearInterval(this.intervalId);
+      this.setState({ break: 5, session: 25, breakSeconds: 300, sessionSeconds: 1500, timerOn: false, sessionOn: true });
+      const sound = document.getElementById('beep');
+      sound.pause();
+      sound.currentTime = 0;
+    }
+
+    decrementBreak() {
+      if (this.state.break > 1) {
+        this.setState({ break: this.state.break - 1, breakSeconds: (this.state.break - 1) * 60 });
+      }
+    }
+
+    incrementBreak() {
+      if (this.state.break < 60) {
+        this.setState({ break: this.state.break + 1, breakSeconds: (this.state.break + 1) * 60 });
+      }
+    }
+
+    decrementSession() {
+      if (this.state.session > 1) {
+        this.setState({ session: this.state.session - 1, sessionSeconds: (this.state.session - 1) * 60 });
+      }
+    }
+
+    incrementSession() {
+      if (this.state.session < 60) {
+        this.setState({ session: this.state.session + 1, sessionSeconds: (this.state.session + 1) * 60 });
+      }
+    }
+
+    handleTimer(timerInSeconds) {
+      let minutes;
+      let seconds;
+
+      if (timerInSeconds % 60 === 0) {
+        minutes = (timerInSeconds / 60).toString();
+        seconds = '00'
+      } else {
+        minutes = ((timerInSeconds + (60 - (timerInSeconds % 60) - 60)) / 60).toString();
+        seconds = (timerInSeconds % 60).toString();
+      }
+
+      if (minutes.length === 1) {
+        minutes = `0${minutes}`;
+      }
+
+      if (seconds.length === 1) {
+        seconds = `0${seconds}`;
+      }
+      return(`${minutes}:${seconds}`);
+    }
+
+    addRedStyle() {
+      const label = document.getElementById('timer-label');
+      const time = document.getElementById('time-left');
+      label.classList.add('red-font');
+      time.classList.add('red-font');
+    }
+
+    removeRedStyle() {
+      const label = document.getElementById('timer-label');
+      const time = document.getElementById('time-left');
+      label.classList.remove('red-font');
+      time.classList.remove('red-font');
+    }
+
+    alertUser() {
+      const light = document.getElementById('light');
+      light.classList.add('led-red');
+      setTimeout(() => {light.classList.remove('led-red');}, 1250);
+      const sound = document.getElementById('beep');
+      sound.currentTime = 0;
+      sound.play();
+    }
+
+    render() {
+      return (
+        <div id="outer-wrap">
+          <div id="inner-wrap">
+          <div id="session-length-wrap">
+            <button id="session-decrement" onClick={this.decrementSession}><i className="fas fa-caret-down"></i></button><div id="session-length">{this.state.session}</div><button id="session-increment" onClick={this.incrementSession}><i className="fas fa-caret-up"></i></button>
+          </div>
+            <div id="session-label">Session Length</div>
+            <div id="break-length-wrap">
+              <button id="break-decrement" onClick={this.decrementBreak}><i className="fas fa-caret-down"></i></button><div id="break-length">{this.state.break}</div><button id="break-increment" onClick={this.incrementBreak}><i className="fas fa-caret-up"></i></button>
+            </div>
+            <div id="break-label">Break Length</div>
+            <div id="timer-label" className="">{this.state.sessionOn ? 'Session' : 'Break'}</div>
+            <div id="time-left-wrap"><div id="time-left" className="">{this.state.sessionOn ? this.handleTimer(this.state.sessionSeconds) : this.handleTimer(this.state.breakSeconds)}</div></div>
+            <div id="timer-control">
+              <button id="start_stop" onClick={this.startTimer}><i className="fas fa-play"></i><i className="fas fa-pause"></i></button>
+              <button id="reset" onClick={this.resetTimer}><i className="fas fa-redo-alt"></i></button>
+            </div>
+            <div id="user-alert">
+              <div id="light" className="led"></div>
+              <audio src="assets/beep.mp3" id="beep"></audio>
+            </div>
+          </div>
+          <div id="description">
+          The Pomodoro Technique is a time management method developed by Francesco Cirillo in the late 1980s. The technique uses a timer to break down work into intervals, traditionally 25 minutes in length, separated by short breaks.(Source: Wikipedia)
+          </div>
+        </div>
+      );
+    }
+  }
+
+  ReactDOM.render(<App />, contentNode);
+
+</script>
+
+</body>
+
+</html>
