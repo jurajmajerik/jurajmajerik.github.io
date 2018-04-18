@@ -37,8 +37,6 @@
 
     componentDidMount() {
       document.addEventListener('keydown', function(e) {
-        if (e === undefined) return;
-        console.log(e);
         const sound = document.getElementById(e.key.toUpperCase());
         sound.currentTime = 0;
         sound.play();
@@ -56,7 +54,7 @@
       const key = document.getElementById(`audio-${pad.toLowerCase()}`);
       key.classList.add("key-active");
       setTimeout(() => {key.classList.remove("key-active");}, 100);
-      document.getElementById('display').innerHTML = pad;
+      document.getElementById('display').innerHTML = soundNames[pad.toLowerCase()];
     }
 
     render() {
