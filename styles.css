@@ -16,11 +16,11 @@ body {
   --font-size-label: 11px;
 
   --javascript: #a08a11;
-  --react: #1b90c6;
+  --react: #14709b;
   --node: #567714;
-  --express: grey;
+  --express: #666666;
   --sass: #C1647C;
-  --mongo: #4CA655;
+  --mongo: #3b8743;
   --redux: #7A4AB6;
   --angular: #bf183c;
   --regex: #bf183c;
@@ -31,7 +31,7 @@ body {
   --font-secondary: black;
   --blue: blue;*/
   background-color: var(--bg-primary);
-  color: var(--font-primary);
+  color: #e8e8e8;
   font-family: "Custom";
 }
 
@@ -113,7 +113,7 @@ body {
   box-sizing: border-box;
   background-size: cover;
   /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
-  box-shadow: inset 0 0 0 2000px rgba(23, 31, 39, 0.95);
+  box-shadow: inset 0 0 0 2000px rgba(23, 31, 39, 0.97);
 }
 
 .square::before {
@@ -123,7 +123,7 @@ body {
 }
 
 .square:hover {
-  box-shadow: inset 0 0 0 2000px rgba(23, 31, 39, 0.93);
+  box-shadow: inset 0 0 0 2000px rgba(23, 31, 39, 0.95);
 }
 
 .square .content {
