@@ -1,0 +1,137 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>To Do List</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/15.2.1/react-dom.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.23/browser.min.js"></script>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="todo-list-styles.css">
+</head>
+
+<body>
+<div id="contents"></div>
+
+<script type="text/babel">
+  const contentNode = document.getElementById('contents');
+
+  const Task = (props) => (
+    <div className="task-display">
+      <div id="display-task-text-outer">
+        <div id="display-task-text-inner">{props.task}</div>
+      </div>
+      <div id="remove-task">
+        <div id="remove-sign"><button onClick={() => props.deleteTask(props.id)}><i className="fas fa-check-square"></i></button></div>
+      </div>
+    </div>
+  );
+
+  class App extends React.Component {
+    constructor() {
+      super();
+      this.state = { data: [], dataLoaded: false };
+      this.loadData = this.loadData.bind(this);
+      this.addTask = this.addTask.bind(this);
+      this.deleteTask = this.deleteTask.bind(this);
+    }
+
+    componentDidMount() {
+      this.loadData();
+    }
+
+    addTask(e) {
+      e.preventDefault();
+      const form = document.forms.taskAdd;
+
+      fetch('https://jurajstodo.herokuapp.com/api/tasks', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ task: form.task.value }),
+      }).then(response => {
+        if (response.ok) {
+          response.json()
+          .then(task => {
+            this.loadData();
+          });
+        } else {
+          response.json()
+          .then(error => {
+            alert(error);
+          });
+        }
+      }).catch(err => {
+        alert(err);
+      });
+
+      form.task.value = '';
+    }
+
+    loadData() {
+      fetch(`https://jurajstodo.herokuapp.com/api/tasks`).then(response => {
+        if (response.ok) {
+          response.json().then(data => {
+            this.setState({ data: data.items, dataLoaded: true });
+          });
+        } else {
+          response.json().then(error => {
+            alert(`Failed to fetch issues: ${error}`);
+          });
+        }
+      }).catch(err => {
+        alert(`Error in fetching data from server: ${err}`);
+      });
+    }
+
+    deleteTask(id) {
+      console.log(id);
+      fetch(`https://jurajstodo.herokuapp.com/api/tasks/${id}`, { method: 'DELETE' }).then(response => {
+        if (!response.ok) alert('Failed to delete issue');
+        else this.loadData();
+      });
+    }
+
+    render() {
+      const tasks = this.state.data.map(item =>
+        <Task key={item._id} id={item._id} task={item.task} deleteTask={this.deleteTask} />
+      );
+
+      const loader = (
+        <div className="loader-animation">
+          <div className="sk-double-bounce">
+            <div className="sk-child sk-double-bounce1"></div>
+            <div className="sk-child sk-double-bounce2"></div>
+          </div>
+        </div>
+      );
+
+      return (
+        <div className="App">
+          <div id="outer-wrap">
+            <div className="task-input">
+              <form name="taskAdd" onSubmit={this.addTask}>
+
+                <div id="task-input-inner">
+                  <div id="input-field"><input type="text" name="task" placeholder="Add a task here..." /></div>
+                  <div id="add-button"><button>&nbsp;<i className="fas fa-plus"></i></button></div>
+                </div>
+
+              </form>
+            </div>
+            <div>{!this.state.dataLoaded ? loader : tasks}</div>
+          </div>
+        </div>
+      );
+    }
+  }
+
+
+  ReactDOM.render(<App />, contentNode);
+
+</script>
+
+</body>
+
+</html>

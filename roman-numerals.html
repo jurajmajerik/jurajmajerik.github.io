@@ -27,6 +27,12 @@
 <script type="text/javascript">
 
 function convertToRoman(num) {
+
+  const numCheck = parseInt(num);
+  if (numCheck === 'undefined') {
+    return('Please insert a number from 1 to 3999');
+  }
+
   let result = '';
   const romanNumerals = {
     '1': 'I',
@@ -39,7 +45,6 @@ function convertToRoman(num) {
     '8': 'VIII',
     '9': 'IX',
   };
-
 
   function convertSingleDigits(num) {
     if (num !== 0) {
@@ -136,14 +141,10 @@ function convertToRoman(num) {
   }
 
   switch (num.toString().length) {
-    case 1: convertSingleDigits(num);
-        break;
-    case 2: convertDoubleDigits(num);
-        break;
-    case 3: convertTripleDigits(num);
-        break;
-    case 4: convertQuadrupleDigits(num);
-        break;
+    case 1: convertSingleDigits(num); break;
+    case 2: convertDoubleDigits(num); break;
+    case 3: convertTripleDigits(num); break;
+    case 4: convertQuadrupleDigits(num); break;
     default: return('Please insert a number from 1 to 3999');
   }
 
