@@ -1,0 +1,167 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Roman Numerals Converter</title>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="roman-numerals-styles.css">
+</head>
+
+<body>
+  <div id="outer-wrap">
+    <div id="inner-wrap">
+      <div id="form-wrap">
+        <form id="main">
+          <input type="text" id="number" maxlength="4" placeholder="Enter a number from 1 to 3999" />
+          <div id="button-wrap"><button type="submit"><i class="fas fa-redo-alt"></i></button></div>
+        </form>
+      </div>
+      <div id="output-wrap">-------------</div>
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+function convertToRoman(num) {
+  let result = '';
+  const romanNumerals = {
+    '1': 'I',
+    '2': 'II',
+    '3': 'III',
+    '4': 'IV',
+    '5': 'V',
+    '6': 'VI',
+    '7': 'VII',
+    '8': 'VIII',
+    '9': 'IX',
+  };
+
+
+  function convertSingleDigits(num) {
+    if (num !== 0) {
+      const numString = num.toString();
+      result += romanNumerals[numString];
+    }
+  }
+
+  function convertDoubleDigits(num) {
+    const numString = num.toString();
+
+    const firstDigitString = numString[0];
+    const secondDigitString = numString[1];
+
+    const firstDigitNumber = parseInt(firstDigitString);
+    const secondDigitNumber = parseInt(secondDigitString);
+
+    if (firstDigitNumber >= 1 && firstDigitNumber <= 3) {
+      for (let i = 0; i < firstDigitNumber; i++) {
+        result += 'X';
+      }
+    } else if (firstDigitNumber === 4) {
+      result += 'XL';
+    } else if (firstDigitNumber >= 5 && firstDigitNumber <= 8) {
+      result += 'L';
+      let numberOfX = firstDigitNumber - 5;
+
+      for (let i = 0; i < numberOfX; i++) {
+        result += 'X';
+      }
+    } else {
+      result += 'XC';
+    }
+    convertSingleDigits(secondDigitNumber);
+  }
+
+  function convertTripleDigits(num) {
+    const numString = num.toString();
+
+    const firstDigitString = numString[0];
+    const doubleDigitString = numString[1] + numString[2];
+
+    const firstDigitNumber = parseInt(firstDigitString);
+
+    if (firstDigitNumber >= 1 && firstDigitNumber <= 3) {
+      for (let i = 0; i < firstDigitNumber; i++) {
+        result += 'C';
+      }
+    } else if (firstDigitNumber === 4) {
+      result += 'CD';
+    } else if (firstDigitNumber >= 5 && firstDigitNumber <= 8) {
+      result += 'D';
+      let numberOfD = firstDigitNumber - 5;
+      for (let i = 0; i < numberOfD; i++) {
+        result += 'C';
+      }
+    } else {
+      result += 'CM';
+    }
+
+    if (doubleDigitString[0] === '0') {
+      convertSingleDigits(parseInt(doubleDigitString[1]));
+    } else {
+      convertDoubleDigits(parseInt(doubleDigitString));
+    }
+
+  }
+
+  function convertQuadrupleDigits(num) {
+    const numString = num.toString();
+
+    const firstDigitString = numString[0];
+    const tripleDigitString = numString[1] + numString[2] + numString[3];
+
+    const firstDigitNumber = parseInt(firstDigitString);
+
+    if (firstDigitNumber >= 1 && firstDigitNumber <= 3) {
+      for (let i = 0; i < firstDigitNumber; i++) {
+        result += 'M';
+      }
+    } else {
+      result = 'Please select a number from 1 to 3999';
+      return;
+    }
+
+    if ((tripleDigitString[0] + tripleDigitString[1] === '00')) {
+      convertSingleDigits(parseInt(tripleDigitString[2]));
+    } else if (tripleDigitString[0] === '0') {
+      convertDoubleDigits(parseInt(tripleDigitString[1] + tripleDigitString[2]));
+    } else {
+      convertTripleDigits(parseInt(tripleDigitString));
+    }
+
+  }
+
+  switch (num.toString().length) {
+    case 1: convertSingleDigits(num);
+        break;
+    case 2: convertDoubleDigits(num);
+        break;
+    case 3: convertTripleDigits(num);
+        break;
+    case 4: convertQuadrupleDigits(num);
+        break;
+    default: return('Please insert a number from 1 to 3999');
+  }
+
+  return result;
+}
+
+
+$('#main').submit(function (e) {
+    e.preventDefault();
+
+    let number = $("#number").val();
+    let result = convertToRoman(number);
+
+    $("#output-wrap").text(result);
+
+  });
+
+</script>
+</body>
+
+</html>

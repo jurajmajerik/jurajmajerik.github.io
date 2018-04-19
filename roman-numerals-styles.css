@@ -1,0 +1,64 @@
+#outer-wrap {
+  height: 100vh;
+  margin-top: -40px;
+  text-align: center;
+}
+
+#inner-wrap {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 300px;
+  height: 300px;
+  border: 1px solid var(--blue-border);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#form-wrap {
+  height: 150px;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+#button-wrap {
+  margin-top: 35px;
+}
+
+#output-wrap {
+  height: 150px;
+  padding-top: 50px;
+  font-size: 24px
+}
+
+form {
+  width: 100%;
+}
+
+input {
+  text-align: center;
+  width: 85%;
+  background: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+  border: none;
+}
+
+button {
+  text-align: center;
+  background: none;
+  color: grey;
+  font-size: 30px;
+  font-family: inherit;
+  border: none;
+}
+
+button:hover {
+  color: white;
+}
+
+input:focus {outline:0;}
+
+button:focus {outline:0;}
