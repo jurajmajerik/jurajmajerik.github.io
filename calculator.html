@@ -35,11 +35,12 @@
     handleNumbers(input, buttonId) {
       this.animateButton(buttonId);
 
-      if (calculation.slice(-1) === '0' && input !== '.') {
-        calculation = calculation.slice(0, -1);
+      if (calculation === '0' && input === '0') {
+        return;
       }
-        calculation += input;
-        this.setState({display: calculation});
+
+      calculation += input;
+      this.setState({display: calculation});
     }
 
     handleSigns(input, buttonId) {
