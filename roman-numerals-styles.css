@@ -7,7 +7,8 @@
 #inner-wrap {
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   width: 300px;
   height: 300px;
   border: 1px solid var(--blue-border);
@@ -19,7 +20,8 @@
   height: 150px;
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 #button-wrap {

@@ -9,7 +9,8 @@ button {
   color: inherit;
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
 }
 
 button:focus {outline:0;}
@@ -23,7 +24,8 @@ button:focus {outline:0;}
 #inner-wrap {
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   width: 300px;
   height: 300px;
   border: 1px solid var(--blue-border);
@@ -48,14 +50,16 @@ button:focus {outline:0;}
 #break-length {
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   display: inline-block;
 }
 
 #session-length {
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   display: inline-block;
 }
 
@@ -91,7 +95,8 @@ button:focus {outline:0;}
 #time-left {
   position: relative;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   font-size: 40px;
 }
 
@@ -114,12 +119,14 @@ button:focus {outline:0;}
     height: 10px;
     border-radius: 50%;
     background-color: rgba(255, 255, 255, 0.25);
-    box-shadow: #000 0 -1px 6px 1px;
+    -webkit-box-shadow: #000 0 -1px 6px 1px;
+            box-shadow: #000 0 -1px 6px 1px;
 }
 
 .led-red {
     background-color: #F00;
-    box-shadow: #000 0 -1px 6px 1px, inset #600 0 -1px 8px, #F00 0 3px 11px;
+    -webkit-box-shadow: #000 0 -1px 6px 1px, inset #600 0 -1px 8px, #F00 0 3px 11px;
+            box-shadow: #000 0 -1px 6px 1px, inset #600 0 -1px 8px, #F00 0 3px 11px;
 }
 
 .red-font {
