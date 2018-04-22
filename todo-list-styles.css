@@ -21,6 +21,7 @@ body {
 
 input {
   height: 90%;
+  width: 100%;
   background: none;
   border: none;
   color: inherit;
@@ -56,10 +57,10 @@ button:focus {outline:0;}
 }
 
 .task-input {
-  height: 50px;
   border: 1px solid var(--blue-border);
-  /* display: grid;
-  grid-template-columns: 347px 50px; */
+  text-align: justify;
+  padding-top: 12px;
+  height: 38px;
 }
 
 #task-input-inner {
