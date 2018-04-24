@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>Juraj's Portfolio</title>
+    <link rel="shortcut icon" type="image/png" href="assets/favicon.ico"/>
     <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <link rel="stylesheet" href="styles/styles.css">
@@ -12,9 +13,9 @@
 
     <nav id="navbar">
       <ul>
-        <li>Home</li>
-        <li>Projects</li>
-        <li>Contact</li>
+        <a href="#"><li>Home</li></a>
+        <a href="#projects-heading"><li>Projects</li></a>
+        <a href="#contact"><li>Contact</li></a>
       </ul>
     </nav>
 
@@ -23,7 +24,7 @@
         <h1>HI, I'M JURAJ.</h1>
         <p class="blue">AN ASPIRING WEB DEVELOPER</p>
         <div class="social"><a href="https://github.com/jurajmajerik" target="_blank"><i class="fab fa-github"></i></a></div>
-        <p id="bio">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+        <p id="bio">In September 2017, I started my journey to learn Web Development. Over the several months, I worked hard to master HTML, CSS, JavaScript, React and Node.js. I attained three FreeCodeCamp certificates, each requiring hundreds of hours of prior study. Today, I'm looking for an entry-level job as a Front-End developer in Amsterdam, Netherlands. Please, see some of my more interesting or challenging projects below.</p>
       </div>
     </div>
 
@@ -36,7 +37,7 @@
         <div class="content">
           <div class="stuff">
             <h3>To-Do List</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p>Add and remove items from a to-do list, stored in a MongoDB database.</p>
             <div class="tech-wrap">
               <div class="react-tag tech">
                 React
@@ -58,7 +59,7 @@
         <div class="content">
           <div class="stuff">
             <h3>Roman Converter</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <p>Convert numbers from 1 to 3999 into Roman numerals.</p>
             <div class="tech-wrap">
               <div class="javascript-tag tech">
                 JavaScript
@@ -74,7 +75,7 @@
       <div class="content">
         <div class="stuff">
           <h3>Random Quote Machine</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          <p>Generate a random quote on a click of a button.</p>
           <div class="react-tag tech">
             React
           </div>
@@ -94,7 +95,7 @@
       <div class="content">
         <div class="stuff">
           <h3>Cash Machine</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          <p>Given a product price and cash received, calculate the exact change due.</p>
           <div class="tech-wrap">
             <div class="javascript-tag tech">
               JavaScript
@@ -110,7 +111,7 @@
     <div class="content">
       <div class="stuff">
         <h3>Drum Machine</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Play nine different sounds, using key presses or clicks.</p>
         <div class="tech-wrap">
           <div class="react-tag tech">
             React
@@ -126,7 +127,7 @@
     <div class="content">
       <div class="stuff">
         <h3>Form Validation</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Validata five different types of form input data.</p>
         <div class="tech-wrap">
           <div class="javascript-tag tech">
             JavaScript
@@ -145,7 +146,7 @@
     <div class="content">
       <div class="stuff">
         <h3>Calculator</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>A simple calculator that follows the principle of operation precedence.</p>
         <div class="tech-wrap">
           <div class="react-tag tech">
             React
@@ -161,7 +162,7 @@
     <div class="content">
       <div class="stuff">
         <h3>Pomodoro Clock</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Break down your work into intervals, separated by short breaks.</p>
         <div class="tech-wrap">
           <div class="react-tag tech">
             React
@@ -177,7 +178,7 @@
     <div class="content">
       <div class="stuff">
         <h3>Markdown Previewer</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+        <p>Preview your Markdown syntax instantaneously.</p>
         <div class="tech-wrap">
           <div class="react-tag tech">
             React
@@ -199,7 +200,7 @@
           <div class="content">
             <div class="stuff">
               <h3>Responsive Web Design</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <p>FreeCodeCamp.org</p>
             </div>
           </div>
         </div>
@@ -210,7 +211,7 @@
           <div class="content">
             <div class="stuff">
               <h3>Front End Libraries</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <p>FreeCodeCamp.org</p>
             </div>
           </div>
         </div>
@@ -221,7 +222,7 @@
           <div class="content">
             <div class="stuff">
               <h3>Algorithms & Data Structures</h3>
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+              <p>FreeCodeCamp.org</p>
             </div>
           </div>
         </div>
@@ -229,7 +230,7 @@
 
       </div>
 
-      <h2>Contact</h2>
+      <h2 id="contact">Contact</h2>
       <div class="social">
         <a href="https://www.linkedin.com/in/jurajmajerik/" target="_blank"><i class="fab fa-linkedin"></i></a>&nbsp;
         <a href="mailto:juro.majerik@gmail.com"><i class="fas fa-envelope"></i></a>&nbsp;

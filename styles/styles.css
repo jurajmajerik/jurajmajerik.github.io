@@ -72,7 +72,7 @@ body {
   padding: 5px 0px 5px 0px;
 }
 
-#navbar > ul > li{
+#navbar > ul > a > li{
   display: inline-block;
   text-decoration: none;
   list-style: none;
