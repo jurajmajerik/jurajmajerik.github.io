@@ -111,12 +111,6 @@ body {
   text-align: center;
 }
 
-#social > img {
-  width: 24px;
-  height: auto;
-  margin: 0px 5px 0px 5px;
-}
-
 .square-container {
   display: grid;
   grid-template-columns: repeat(3, minmax(30%, 1fr));
@@ -333,4 +327,8 @@ textarea {
   text-decoration: none;
   color: white;
   padding-top: 10px;
+}
+
+#bio-github {
+  text-decoration: none;
 }
