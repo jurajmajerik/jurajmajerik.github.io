@@ -30,7 +30,7 @@
 
     loadData() {
       let quoteNumber = Math.floor(Math.random() * 10);
-      fetch(`http://jurajstodo.herokuapp.com/api/quotes`).then(response => {
+      fetch(`https://jurajstodo.herokuapp.com/api/quotes`).then(response => {
         if (response.ok) {
           response.json().then(data => {
             this.setState({quote: data.items[quoteNumber].quote, author: data.items[quoteNumber].author});
