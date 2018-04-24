@@ -29,11 +29,11 @@
     }
 
     loadData() {
-      let quoteNumber = Math.floor(Math.random() * 80);
-      fetch(`https://random-quote-generator.herokuapp.com/api/quotes/`).then(response => {
+      let quoteNumber = Math.floor(Math.random() * 10);
+      fetch(`http://jurajstodo.herokuapp.com/api/quotes`).then(response => {
         if (response.ok) {
           response.json().then(data => {
-            this.setState({quote: data[quoteNumber].quote, author: data[quoteNumber].author});
+            this.setState({quote: data.items[quoteNumber].quote, author: data.items[quoteNumber].author});
           });
         } else {
           response.json().then(error => {
