@@ -33,6 +33,7 @@ body {
   background-color: var(--bg-primary);
   color: #e8e8e8;
   font-family: "Custom";
+  padding-bottom: 40px;
 }
 
 .javascript-tag {
@@ -78,6 +79,10 @@ body {
   margin: 0px 10px 0px 10px;
 }
 
+#navbar > ul {
+  padding-left: 0px;
+}
+
 #intro {
   height: 100vh;
   margin-top: -73px;
@@ -91,8 +96,19 @@ body {
           transform: translateY(-50%);
 }
 
-#social {
-  fill: white;
+#bio {
+  margin-top: 70px;
+  text-align: justify;
+  max-width: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.social {
+  font-size: 26px;
+  text-align: center;
 }
 
 #social > img {
@@ -195,6 +211,11 @@ h2 {
   text-transform: uppercase;
   font-size: 40px;
   font-weight: 300;
+  margin-top: 80px;
+}
+
+#projects-heading {
+  margin-top: 0px;
 }
 
 p {

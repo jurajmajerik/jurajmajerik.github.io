@@ -1,0 +1,126 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Cash Machine</title>
+  <script defer src="https://use.fontawesome.com/releases/v5.0.10/js/all.js" integrity="sha384-slN8GvtUJGnv6ca26v8EzVaR9DC58QEwsIk9q1QXdCU8Yu8ck/tL/5szYlBbqmS+" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="cash-machine.css">
+  <link href="https://fonts.googleapis.com/css?family=Orbitron|Share+Tech+Mono" rel="stylesheet">
+</head>
+
+<body>
+  <div id="outer-wrap">
+    <div id="denomination-wrap">
+
+    </div>
+    <div id="form-wrap">
+      <form id="input">
+        <input id="price" type="text" name="price" placeholder="PRODUCT PRICE">
+        <input id="cash" type="text" name="cash" placeholder="CASH RECEIVED">
+        <button type="submit">CALCULATE</button>
+      </form>
+    </div>
+    <div id="output-wrap">
+
+    </div>
+  </div>
+
+
+<script type="text/javascript">
+
+function checkCashRegister(price, cash, cid) {
+
+  function adjust(num) {
+    return(Math.round((num + 0.00001) * 100) / 100);
+  }
+
+  function handleDenomination(denomination, labelString, index) {
+    let changeCurrent = 0;
+    while (cid[index][1] >= denomination) {
+      if (adjust(changeTotal) - denomination >= 0) {
+        changeTotal -= denomination;
+        changeCurrent += denomination;
+        cid[index][1] -= denomination;
+      } else {
+        break;
+      }
+    }
+    if (changeCurrent !== 0) result.change.push([labelString, changeCurrent ]);
+  }
+
+  let totalCash = 0;
+
+  for (let i = 0; i < cid.length; i++) {
+    totalCash += cid[i][1];
+  }
+
+  let changeTotal = cash - price;
+
+  if (adjust(totalCash) < adjust(changeTotal)) {
+    return({ status: 'INSUFFICIENT_FUNDS', change:[] });
+  }
+
+  if (adjust(totalCash) === adjust(changeTotal)) {
+    return({ status: 'CLOSED', change: cid });
+  }
+
+  let result = { status: 'OPEN', change: [] };
+
+  handleDenomination(100, 'ONE HUNDRED', 8);
+  handleDenomination(20, 'TWENTY', 7);
+  handleDenomination(10, 'TEN', 6);
+  handleDenomination(5, 'FIVE', 5);
+  handleDenomination(1, 'ONE', 4);
+  handleDenomination(0.25, 'QUARTER', 3);
+  handleDenomination(0.10, 'DIME', 2);
+  handleDenomination(0.05, 'NICKEL', 1);
+  handleDenomination(0.01, 'PENNY', 0);
+
+  console.log(changeTotal);
+
+  if ((Math.round((changeTotal + 0.00001) * 100) / 100) === 0) {
+    return(result);
+  } else {
+    return({ status: 'INSUFFICIENT_FUNDS', change:[] });
+  }
+
+}
+
+const denominations = [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]];
+
+for (let i = 0; i < denominations.length; i++) {
+  const row = `<p class="denomination-row">${denominations[i][0]}: <span class="orbitron">$${denominations[i][1]}</span></p>`;
+  document.getElementById('denomination-wrap').insertAdjacentHTML('afterend', row);
+}
+
+$('#input').submit(function (e) {
+    e.preventDefault();
+    document.getElementById('output-wrap').innerHTML = '';
+
+    let priceInput = $("#price").val();
+    let cashInput = $("#cash").val();
+
+    if (priceInput !== '' && cashInput !== '') {
+      const calculation = checkCashRegister(priceInput, cashInput, denominations);
+      console.log(calculation);
+
+      if (calculation.status === 'INSUFFICIENT_FUNDS') {
+        document.getElementById('output-wrap').innerHTML = 'INSUFFICIENT FUNDS!';
+      } else {
+        document.getElementById('output-wrap').insertAdjacentHTML('beforeend', '<p>Change Due:</p>');
+        for (let i = 0; i < calculation.change.length; i++) {
+          const row = `<p>${calculation.change[i][0]}: $<span class="orbitron">${calculation.change[i][1]}</span></p>`;
+          document.getElementById('output-wrap').insertAdjacentHTML('beforeend', row);
+        }
+      }
+    }
+
+  });
+
+</script>
+</body>
+
+</html>

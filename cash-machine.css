@@ -1,0 +1,49 @@
+body {
+  /* text-align: center; */
+}
+
+input {
+  display: block;
+  background: #1e2933;
+  font-size: inherit;
+  font-family: inherit;
+  color: inherit;
+  border: none;
+  margin-bottom: 5px;
+  width: 100%;
+  text-align: center;
+}
+
+button {
+  background-color: inherit;
+  color: inherit;
+  font-family: inherit;
+  width: 100%;
+  padding: 5px;
+}
+
+#outer-wrap {
+  max-width: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 50px;
+  font-size: 14px;
+  border: 1px solid var(--blue-border);
+  padding: 20px;
+}
+
+#denomination-wrap {
+  font-size: 16px;
+  color: red;
+}
+
+#denomination-row {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.orbitron {
+  font-family: 'Share Tech Mono';
+  font-size: 18px;
+  color: #00ddff;
+}

@@ -3,6 +3,8 @@
   <head>
     <meta charset="utf-8">
     <title>Juraj's Portfolio</title>
+    <link rel="stylesheet" href="https://cdn.rawgit.com/konpa/devicon/df6431e323547add1b4cf45992913f15286456d3/devicon.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="index-styles.css">
   </head>
@@ -20,13 +22,12 @@
       <div id="greeting">
         <h1>HI, I'M JURAJ.</h1>
         <p class="blue">AN ASPIRING WEB DEVELOPER</p>
-        <div id="social">
-          <img src="assets/github-1.png" alt="">
-        </div>
+        <div class="social"><i class="devicon-github-plain"></i></div>
+        <p id="bio">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
       </div>
     </div>
 
-    <h2>Projects</h2>
+    <h2 id="projects-heading">Projects</h2>
 
     <div class="square-container">
 
@@ -105,21 +106,21 @@
       </div>
     </a>
 
-      <a href="markdown-previewer.html">
-      <div id="markdown-previewer" class="square">
-        <div class="content">
-          <div class="stuff">
-            <h3>Markdown Previewer</h3>
-            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
-            <div class="tech-wrap">
-              <div class="react-tag tech">
-                React
-              </div>
+    <a href="cash-machine.html">
+    <div id="cash-machine" class="square">
+      <div class="content">
+        <div class="stuff">
+          <h3>Cash Machine</h3>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+          <div class="tech-wrap">
+            <div class="javascript-tag tech">
+              JavaScript
             </div>
           </div>
         </div>
       </div>
-      </a>
+    </div>
+  </a>
 
       <a href="drum-machine.html">
       <div id="drum-machine" class="square">
@@ -188,8 +189,71 @@
       </div>
       </a>
 
+      <a href="markdown-previewer.html">
+      <div id="markdown-previewer" class="square">
+        <div class="content">
+          <div class="stuff">
+            <h3>Markdown Previewer</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            <div class="tech-wrap">
+              <div class="react-tag tech">
+                React
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      </a>
 
-    </div>
+      </div>
+
+      <h2>Certificates</h2>
+
+      <div class="square-container">
+
+        <a href="https://beta.freecodecamp.org/certificates/jurajmajerik/responsive-web-design">
+        <div id="responsive-web-design" class="square">
+          <div class="content">
+            <div class="stuff">
+              <h3>Responsive Web Design</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <a href="https://beta.freecodecamp.org/certificates/jurajmajerik/front-end-libraries">
+        <div id="front-end-libraries" class="square">
+          <div class="content">
+            <div class="stuff">
+              <h3>Front End Libraries</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+          </div>
+        </div>
+        </a>
+
+        <a href="https://beta.freecodecamp.org/certificates/jurajmajerik/front-end-libraries">
+        <div id="algorithms-and-data-structures" class="square">
+          <div class="content">
+            <div class="stuff">
+              <h3>Algorithms & Data Structures</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+            </div>
+          </div>
+        </div>
+        </a>
+
+      </div>
+
+      <h2>Contact</h2>
+      <div class="social">
+        <i class="fab fa-linkedin"></i>&nbsp;
+        <i class="fas fa-envelope"></i>&nbsp;
+        <i class="fab fa-github"></i>&nbsp;
+        <i class="fab fa-twitter-square"></i>&nbsp;
+        <i class="fab fa-facebook-square"></i>
+      </div>
 
   </body>
 </html>
