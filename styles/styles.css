@@ -25,6 +25,8 @@ body {
   --angular: #bf183c;
   --regex: #bf183c;
   --d3: #E47652;
+  --php: #6C70AA;
+  --mysql: #c97e48;
   /*--bg-primary: white;
   --bg-secondary: white;
   --font-primary: black;
@@ -65,6 +67,14 @@ body {
 }
 .regex-tag {
   background-color: var(--regex);
+}
+
+.php-tag {
+  background-color: var(--php);
+}
+
+.mysql-tag {
+  background-color: var(--mysql);
 }
 
 #navbar {
